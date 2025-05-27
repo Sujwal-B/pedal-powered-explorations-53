@@ -5,23 +5,23 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { ArrowLeft, MapPin, Star, Calendar as CalendarIcon, IndianRupee } from "lucide-react";
+import { ArrowLeft, MapPin, Star, Calendar as CalendarIcon, IndianRupee, Shield, Clock, CheckCircle } from "lucide-react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 
-// Mock bike data - in real app this would come from API
+// Mock bike data with Indian pricing
 const mockBike = {
   id: 1,
-  name: "Urban Cruiser",
-  brand: "Hero",
+  name: "Hero Splendor Plus",
+  brand: "Hero MotoCorp",
   type: "City",
   price: 299,
   image: "/placeholder.svg",
   rating: 4.8,
   location: "Delhi NCR",
   availability: "Available",
-  description: "Perfect for city commuting with comfortable seating and smooth ride quality. Features include basket, lights, and lock. Ideal for navigating through Indian traffic conditions.",
-  features: ["Comfortable seat", "Built-in basket", "LED lights", "Chain lock included", "7-speed transmission", "Puncture-resistant tires"]
+  description: "Perfect for city commuting with comfortable seating and excellent fuel efficiency. Features include electric start, alloy wheels, and integrated braking system. Ideal for navigating through Indian traffic conditions with ease and comfort.",
+  features: ["Electric Start", "Alloy Wheels", "LED Headlight", "Digital Console", "Comfortable Seat", "Fuel Efficient Engine"]
 };
 
 const BikeDetail = () => {
@@ -70,33 +70,31 @@ const BikeDetail = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
-      {/* Header */}
-      <header className="bg-white/90 backdrop-blur-sm shadow-lg border-b border-white/20 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 py-4">
+      {/* Enhanced Header */}
+      <header className="bg-white/90 backdrop-blur-sm shadow-xl border-b border-white/20 sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 py-6">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-6">
               <Button 
                 variant="ghost" 
                 onClick={() => navigate("/search")}
-                className="flex items-center space-x-2 hover:bg-blue-50 transition-all duration-300"
+                className="flex items-center space-x-2 hover:bg-white/50 transition-all duration-300 rounded-2xl px-6 py-3"
               >
                 <ArrowLeft className="h-5 w-5" />
-                <span>Back to Search</span>
+                <span className="font-medium">Back to Search</span>
               </Button>
-              <h1 className="text-2xl font-bold text-gray-900">Bike Details</h1>
+              <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">Bike Details</h1>
             </div>
-            <div className="text-xl font-bold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
-              BikeRental India
-            </div>
+            <div className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">BikeRental India</div>
           </div>
         </div>
       </header>
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-8">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-12">
         <div className="grid lg:grid-cols-2 gap-12">
-          {/* Bike Image and Info */}
+          {/* Enhanced Bike Image and Info */}
           <div>
-            <Card className="mb-6 overflow-hidden shadow-xl border-0">
+            <Card className="mb-8 overflow-hidden shadow-2xl border-0 rounded-3xl">
               <CardContent className="p-0">
                 <div className="relative">
                   <img 
@@ -104,80 +102,97 @@ const BikeDetail = () => {
                     alt={mockBike.name}
                     className="w-full h-96 object-cover"
                   />
-                  <div className="absolute top-4 right-4">
-                    <div className={`px-4 py-2 rounded-full text-sm font-medium shadow-lg ${
+                  <div className="absolute top-6 right-6">
+                    <div className={`px-6 py-3 rounded-2xl text-lg font-bold shadow-xl ${
                       mockBike.availability === "Available" 
-                        ? "bg-green-500 text-white" 
-                        : "bg-red-500 text-white"
+                        ? "bg-gradient-to-r from-green-500 to-emerald-500 text-white" 
+                        : "bg-gradient-to-r from-red-500 to-pink-500 text-white"
                     }`}>
                       {mockBike.availability}
                     </div>
                   </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
                 </div>
               </CardContent>
             </Card>
 
             <div className="space-y-8">
-              <div className="bg-white rounded-2xl p-8 shadow-xl border border-gray-100">
-                <h1 className="text-4xl font-bold text-gray-900 mb-4">{mockBike.name}</h1>
-                <div className="flex items-center space-x-6 mb-6">
-                  <span className="text-xl text-gray-600 font-medium">Brand: {mockBike.brand}</span>
-                  <div className="flex items-center space-x-2">
-                    <Star className="h-6 w-6 text-yellow-400 fill-current" />
-                    <span className="text-gray-600 text-lg font-medium">{mockBike.rating}</span>
+              <div className="bg-white rounded-3xl p-8 shadow-xl border-0">
+                <h1 className="text-4xl font-bold text-gray-900 mb-6">{mockBike.name}</h1>
+                <div className="flex items-center space-x-8 mb-6">
+                  <div className="flex items-center space-x-3 bg-gradient-to-r from-blue-50 to-purple-50 px-6 py-3 rounded-2xl border border-blue-200">
+                    <span className="text-xl text-gray-700 font-bold">Brand:</span>
+                    <span className="text-xl text-blue-600 font-bold">{mockBike.brand}</span>
+                  </div>
+                  <div className="flex items-center space-x-2 bg-gradient-to-r from-yellow-50 to-orange-50 px-6 py-3 rounded-2xl border border-yellow-200">
+                    <Star className="h-6 w-6 text-yellow-500 fill-current" />
+                    <span className="text-gray-700 text-xl font-bold">{mockBike.rating}</span>
                   </div>
                 </div>
                 
-                <div className="flex items-center space-x-8 mb-6">
-                  <div className="flex items-center space-x-2">
-                    <span className="text-sm text-gray-600 bg-gradient-to-r from-blue-100 to-green-100 px-4 py-2 rounded-full font-medium border border-blue-200">
-                      {mockBike.type} Bike
-                    </span>
+                <div className="flex items-center space-x-8 mb-8">
+                  <div className="flex items-center space-x-3 bg-gradient-to-r from-green-50 to-blue-50 px-6 py-3 rounded-2xl border border-green-200">
+                    <span className="text-lg text-gray-600 font-semibold">{mockBike.type} Bike</span>
                   </div>
-                  <div className="flex items-center space-x-2 text-gray-600">
+                  <div className="flex items-center space-x-3 text-gray-600 bg-gradient-to-r from-gray-50 to-blue-50 px-6 py-3 rounded-2xl border border-gray-200">
                     <MapPin className="h-5 w-5 text-blue-600" />
-                    <span className="font-medium">{mockBike.location}</span>
+                    <span className="font-semibold text-lg">{mockBike.location}</span>
                   </div>
                 </div>
 
                 <div className="flex items-center space-x-6 mb-8">
-                  <div className="flex items-center bg-gradient-to-r from-green-50 to-blue-50 rounded-2xl px-6 py-4 border border-green-200">
-                    <IndianRupee className="h-8 w-8 text-green-600 mr-2" />
-                    <span className="text-3xl font-bold text-green-600">{mockBike.price}</span>
-                    <span className="text-gray-600 ml-2 text-lg">/day</span>
+                  <div className="flex items-center bg-gradient-to-r from-green-100 to-emerald-100 rounded-3xl px-8 py-6 border-2 border-green-300 shadow-lg">
+                    <IndianRupee className="h-10 w-10 text-green-600 mr-3" />
+                    <span className="text-4xl font-bold text-green-600">{mockBike.price}</span>
+                    <span className="text-gray-600 ml-3 text-xl font-semibold">/day</span>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-white rounded-2xl p-8 shadow-xl border border-gray-100">
-                <h3 className="text-2xl font-semibold mb-4 text-gray-900">Description</h3>
-                <p className="text-gray-600 leading-relaxed text-lg">{mockBike.description}</p>
+              <div className="bg-white rounded-3xl p-8 shadow-xl border-0">
+                <h3 className="text-2xl font-bold mb-6 text-gray-900 flex items-center">
+                  <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center mr-3">
+                    <Clock className="h-4 w-4 text-white" />
+                  </div>
+                  Description
+                </h3>
+                <p className="text-gray-600 leading-relaxed text-lg bg-gradient-to-r from-gray-50 to-blue-50 p-6 rounded-2xl border border-gray-200">{mockBike.description}</p>
               </div>
 
-              <div className="bg-white rounded-2xl p-8 shadow-xl border border-gray-100">
-                <h3 className="text-2xl font-semibold mb-6 text-gray-900">Features</h3>
-                <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="bg-white rounded-3xl p-8 shadow-xl border-0">
+                <h3 className="text-2xl font-bold mb-6 text-gray-900 flex items-center">
+                  <div className="w-8 h-8 bg-gradient-to-r from-green-600 to-blue-600 rounded-xl flex items-center justify-center mr-3">
+                    <CheckCircle className="h-4 w-4 text-white" />
+                  </div>
+                  Features & Amenities
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {mockBike.features.map((feature, index) => (
-                    <li key={index} className="flex items-center space-x-3 text-gray-600 bg-gradient-to-r from-blue-50 to-green-50 rounded-xl p-3 border border-blue-100">
-                      <div className="w-3 h-3 bg-gradient-to-r from-blue-600 to-green-600 rounded-full flex-shrink-0"></div>
-                      <span className="font-medium">{feature}</span>
-                    </li>
+                    <div key={index} className="flex items-center space-x-4 text-gray-700 bg-gradient-to-r from-blue-50 to-green-50 rounded-2xl p-4 border border-blue-100 hover:shadow-lg transition-shadow duration-300">
+                      <div className="w-4 h-4 bg-gradient-to-r from-blue-600 to-green-600 rounded-full flex-shrink-0"></div>
+                      <span className="font-semibold text-lg">{feature}</span>
+                    </div>
                   ))}
-                </ul>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Booking Form */}
+          {/* Enhanced Booking Form */}
           <div>
-            <Card className="sticky top-24 shadow-2xl border-0 bg-gradient-to-br from-white to-blue-50">
+            <Card className="sticky top-24 shadow-2xl border-0 bg-gradient-to-br from-white to-blue-50 rounded-3xl overflow-hidden">
               <CardContent className="p-8">
-                <h2 className="text-2xl font-semibold mb-8 text-gray-900">Book Your Ride</h2>
+                <div className="flex items-center space-x-4 mb-8">
+                  <div className="w-12 h-12 bg-gradient-to-r from-green-600 to-blue-600 rounded-2xl flex items-center justify-center">
+                    <CalendarIcon className="h-6 w-6 text-white" />
+                  </div>
+                  <h2 className="text-3xl font-bold text-gray-900">Book Your Ride</h2>
+                </div>
                 
-                {/* Date Selection */}
-                <div className="space-y-6 mb-8">
+                {/* Enhanced Date Selection */}
+                <div className="space-y-8 mb-8">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-3">
+                    <label className="block text-lg font-bold text-gray-700 mb-4">
                       Select Start Date
                     </label>
                     <Popover open={showStartCalendar} onOpenChange={setShowStartCalendar}>
@@ -185,15 +200,15 @@ const BikeDetail = () => {
                         <Button
                           variant="outline"
                           className={cn(
-                            "w-full justify-start text-left font-normal h-12 text-lg rounded-xl border-2",
+                            "w-full justify-start text-left font-semibold h-14 text-lg rounded-2xl border-2 border-gray-200 hover:border-blue-500 bg-white",
                             !startDate && "text-muted-foreground"
                           )}
                         >
-                          <CalendarIcon className="mr-3 h-5 w-5" />
+                          <CalendarIcon className="mr-4 h-6 w-6" />
                           {startDate ? format(startDate, "PPP") : <span>Pick a start date</span>}
                         </Button>
                       </PopoverTrigger>
-                      <PopoverContent className="w-auto p-0 bg-white" align="start">
+                      <PopoverContent className="w-auto p-0 bg-white rounded-2xl shadow-2xl" align="start">
                         <Calendar
                           mode="single"
                           selected={startDate}
@@ -203,17 +218,14 @@ const BikeDetail = () => {
                           }}
                           disabled={(date) => date < new Date()}
                           initialFocus
-                          className="pointer-events-auto"
+                          className="pointer-events-auto p-4"
                         />
                       </PopoverContent>
                     </Popover>
-                    {!startDate && (
-                      <p className="text-sm text-red-500 mt-2">Please select a rental start date.</p>
-                    )}
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-3">
+                    <label className="block text-lg font-bold text-gray-700 mb-4">
                       Select End Date
                     </label>
                     <Popover open={showEndCalendar} onOpenChange={setShowEndCalendar}>
@@ -221,15 +233,15 @@ const BikeDetail = () => {
                         <Button
                           variant="outline"
                           className={cn(
-                            "w-full justify-start text-left font-normal h-12 text-lg rounded-xl border-2",
+                            "w-full justify-start text-left font-semibold h-14 text-lg rounded-2xl border-2 border-gray-200 hover:border-blue-500 bg-white",
                             !endDate && "text-muted-foreground"
                           )}
                         >
-                          <CalendarIcon className="mr-3 h-5 w-5" />
+                          <CalendarIcon className="mr-4 h-6 w-6" />
                           {endDate ? format(endDate, "PPP") : <span>Pick an end date</span>}
                         </Button>
                       </PopoverTrigger>
-                      <PopoverContent className="w-auto p-0 bg-white" align="start">
+                      <PopoverContent className="w-auto p-0 bg-white rounded-2xl shadow-2xl" align="start">
                         <Calendar
                           mode="single"
                           selected={endDate}
@@ -239,40 +251,40 @@ const BikeDetail = () => {
                           }}
                           disabled={(date) => date < new Date() || (startDate && date <= startDate)}
                           initialFocus
-                          className="pointer-events-auto"
+                          className="pointer-events-auto p-4"
                         />
                       </PopoverContent>
                     </Popover>
-                    {!endDate && (
-                      <p className="text-sm text-red-500 mt-2">Please select a rental end date.</p>
-                    )}
                   </div>
                 </div>
 
-                {/* Booking Summary */}
+                {/* Enhanced Booking Summary */}
                 {startDate && endDate && (
-                  <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-2xl p-6 mb-8 border border-green-200">
-                    <h3 className="font-semibold mb-4 text-lg text-gray-900">Booking Summary</h3>
-                    <div className="space-y-3 text-sm">
+                  <div className="bg-gradient-to-br from-green-50 to-blue-50 rounded-3xl p-8 mb-8 border-2 border-green-200 shadow-lg">
+                    <h3 className="font-bold mb-6 text-2xl text-gray-900 flex items-center">
+                      <Shield className="h-6 w-6 text-green-600 mr-3" />
+                      Booking Summary
+                    </h3>
+                    <div className="space-y-4 text-lg">
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-600">Bike:</span>
-                        <span className="font-medium text-gray-900">{mockBike.name}</span>
+                        <span className="text-gray-700 font-semibold">Bike:</span>
+                        <span className="font-bold text-gray-900">{mockBike.name}</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-600">Duration:</span>
-                        <span className="font-medium text-gray-900">{calculateDays()} day{calculateDays() > 1 ? 's' : ''}</span>
+                        <span className="text-gray-700 font-semibold">Duration:</span>
+                        <span className="font-bold text-gray-900">{calculateDays()} day{calculateDays() > 1 ? 's' : ''}</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-600">Price per day:</span>
-                        <div className="flex items-center font-medium text-gray-900">
-                          <IndianRupee className="h-4 w-4 mr-1" />
+                        <span className="text-gray-700 font-semibold">Price per day:</span>
+                        <div className="flex items-center font-bold text-gray-900">
+                          <IndianRupee className="h-5 w-5 mr-1" />
                           <span>{mockBike.price}</span>
                         </div>
                       </div>
-                      <div className="border-t border-green-300 pt-3 flex justify-between items-center font-semibold text-lg">
+                      <div className="border-t-2 border-green-300 pt-4 flex justify-between items-center font-bold text-2xl">
                         <span className="text-gray-900">Total Price:</span>
                         <div className="flex items-center text-green-600">
-                          <IndianRupee className="h-5 w-5 mr-1" />
+                          <IndianRupee className="h-7 w-7 mr-1" />
                           <span>{totalPrice}</span>
                         </div>
                       </div>
@@ -282,26 +294,32 @@ const BikeDetail = () => {
 
                 <Button 
                   onClick={handleRentNow}
-                  className="w-full bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 hover:from-blue-700 hover:via-purple-700 hover:to-green-700 text-white py-4 font-semibold rounded-2xl text-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+                  className="w-full bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 hover:from-blue-700 hover:via-purple-700 hover:to-green-700 text-white py-6 font-bold rounded-3xl text-xl shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105"
                   disabled={mockBike.availability !== "Available"}
                 >
-                  {mockBike.availability === "Available" ? "Rent Now" : "Currently Unavailable"}
+                  {mockBike.availability === "Available" ? 
+                    <>
+                      <IndianRupee className="mr-2 h-6 w-6" />
+                      Rent Now - ₹{totalPrice}
+                    </> : 
+                    "Currently Unavailable"
+                  }
                 </Button>
 
-                <p className="text-xs text-gray-500 mt-6 text-center leading-relaxed">
-                  By proceeding, you agree to our Terms and Conditions. All prices are in Indian Rupees (₹).
+                <p className="text-sm text-gray-500 mt-6 text-center leading-relaxed bg-gray-50 p-4 rounded-2xl">
+                  By proceeding, you agree to our Terms and Conditions. All prices are in Indian Rupees (₹). Secure payment guaranteed.
                 </p>
               </CardContent>
             </Card>
 
             <div className="mt-8 text-center">
-              <p className="text-gray-600 text-lg">
+              <p className="text-gray-600 text-xl leading-relaxed">
                 Looking for something else?{" "}
                 <button 
                   onClick={() => navigate("/search")} 
-                  className="text-blue-600 hover:underline font-medium hover:text-blue-700 transition-colors"
+                  className="text-blue-600 hover:underline font-bold hover:text-blue-700 transition-colors"
                 >
-                  Check our other bike types in the search section.
+                  Explore our complete bike collection
                 </button>
               </p>
             </div>
